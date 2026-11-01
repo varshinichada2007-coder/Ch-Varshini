@@ -82,7 +82,6 @@ The following five CRUD operations were implemented and tested using Postman.
 ### 1. GET – Retrieve All Books
 
 ![GET All Books](Screenshots/get-all-books.png)
-
 ### 2. GET – Retrieve Book by ID
 
 ![GET Book By ID](Screenshots/get-book-by-id.png)
@@ -117,7 +116,7 @@ The following five CRUD operations were implemented and tested using Postman.
 
 ## Deployment
 
-**Live URL:** Not deployed.
+**Live URL:** https://ch-varshini.onrender.com/
 
 The application was tested locally using Postman. If deployment is not completed, the local API screenshots are provided above as evidence of successful execution.
 
