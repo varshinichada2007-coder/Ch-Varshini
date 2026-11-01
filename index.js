@@ -21,8 +21,10 @@ const initializeDBAndServer = async () => {
 
     console.log("Database Connected Successfully");
 
-    app.listen(3000, () => {
-      console.log("Server Running at http://localhost:3000/");
+    const PORT = process.env.PORT || 3000;
+
+    app.listen(PORT, () => {
+      console.log(`Server Running at port ${PORT}`);
     });
 
   } catch (error) {
@@ -36,8 +38,10 @@ app.get("/books/", async (request, response) => {
   try {
     const query = `SELECT * FROM book;`;
     const books = await db.all(query);
+
     response.status(200).send(books);
   } catch (error) {
+    console.log(error.message);
     response.status(500).send("Internal Server Error");
   }
 });
@@ -56,6 +60,7 @@ app.get("/books/:bookId/", async (request, response) => {
       response.status(200).send(book);
     }
   } catch (error) {
+    console.log(error.message);
     response.status(500).send("Internal Server Error");
   }
 });
@@ -74,6 +79,7 @@ app.post("/books/", async (request, response) => {
 
     response.status(201).send("Book Added Successfully");
   } catch (error) {
+    console.log(error.message);
     response.status(500).send("Internal Server Error");
   }
 });
@@ -91,7 +97,11 @@ app.put("/books/:bookId/", async (request, response) => {
     `;
 
     const result = await db.run(query, [
-      title, author, price, pages, bookId
+      title,
+      author,
+      price,
+      pages,
+      bookId,
     ]);
 
     if (result.changes === 0) {
@@ -100,6 +110,7 @@ app.put("/books/:bookId/", async (request, response) => {
       response.status(200).send("Book Updated Successfully");
     }
   } catch (error) {
+    console.log(error.message);
     response.status(500).send("Internal Server Error");
   }
 });
@@ -118,6 +129,7 @@ app.delete("/books/:bookId/", async (request, response) => {
       response.status(200).send("Book Deleted Successfully");
     }
   } catch (error) {
+    console.log(error.message);
     response.status(500).send("Internal Server Error");
   }
 });
